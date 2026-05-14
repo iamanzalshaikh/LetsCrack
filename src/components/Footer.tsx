@@ -1,4 +1,5 @@
 import { Sparkles, Mail, Globe, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const cols = [
   {
@@ -8,16 +9,6 @@ const cols = [
       { label: 'Reading Practice',  href: '#features' },
       { label: 'Writing AI Scorer', href: '#features' },
       { label: 'Speaking Examiner', href: '#features' },
-      { label: 'Mock Full Exam',    href: '#pricing' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'About Us',        href: '#' },
-      { label: 'Success Stories', href: '#testimonials' },
-      { label: 'Blog',            href: '#' },
-      { label: 'Careers',         href: '#' },
     ],
   },
   {
@@ -33,82 +24,89 @@ const cols = [
 
 const Footer = () => {
   return (
-    <footer style={{ background: 'var(--color-ink)', color: 'rgba(255,255,255,0.7)' }}>
+    <footer style={{ background: 'var(--color-ink)', color: 'rgba(255,255,255,0.6)' }}>
 
-      {/* CTA Banner */}
-      <div className="container" style={{ paddingTop: '4rem' }}>
-        <div style={{
-          background: 'var(--color-brand)', borderRadius: '16px',
-          padding: '3rem 3.5rem',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          gap: '2rem', flexWrap: 'wrap',
-          marginBottom: '4rem',
-        }}>
-          <div>
-            <h2 style={{
-              fontFamily: 'var(--font-sans)', color: '#fff',
-              fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 800,
-              letterSpacing: '-0.025em', marginBottom: '0.5rem',
-            }}>
+      {/* CTA Banner Section */}
+      <div className="container" style={{ paddingTop: '6rem' }}>
+        <div 
+          className="animate-fade-up"
+          style={{
+            background: 'var(--color-brand)', 
+            borderRadius: '24px',
+            padding: '4rem 3.5rem',
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            gap: '2.5rem', 
+            flexWrap: 'wrap',
+            marginBottom: '6rem',
+            boxShadow: 'var(--shadow-brand)',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
+          {/* Decorative element inside banner */}
+          <div style={{
+            position: 'absolute', top: '-20%', right: '-10%', width: '300px', height: '300px',
+            background: 'rgba(255,255,255,0.1)', borderRadius: '50%', filter: 'blur(60px)'
+          }} />
+
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <h2 style={{ color: '#fff', fontSize: 'clamp(2.5rem, 4vw, 3rem)', marginBottom: '0.75rem', lineHeight: 1.1 }}>
               Ready to Crack the IELTS?
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1rem', maxWidth: 'none' }}>
-              Join 40,000+ students who achieved their target band score.
+            <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.125rem' }}>
+              Join 40,000+ students who achieved their target band score with AI precision.
             </p>
           </div>
-          <a
-            href="#pricing"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              background: '#fff', color: 'var(--color-brand)',
-              padding: '0.875rem 2rem', borderRadius: '10px',
-              fontWeight: 700, fontSize: '0.9375rem', textDecoration: 'none',
-              flexShrink: 0, transition: 'all 160ms',
+          <Link
+            to="/register"
+            className="btn btn-lg"
+            style={{ 
+              background: '#fff', 
+              color: 'var(--color-brand)',
+              position: 'relative',
+              zIndex: 1
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#f0f5ff'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#fff'; }}
           >
-            Start Free Trial <ArrowRight size={16} />
-          </a>
+            Start Free Trial <ArrowRight size={20} />
+          </Link>
         </div>
 
-        {/* Grid */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr',
-          gap: '3rem', paddingBottom: '3.5rem',
-        }} className="footer-grid">
-
-          {/* Brand */}
+        {/* Footer Content Grid */}
+        <div 
+          className="footer-grid"
+          style={{
+            display: 'grid', 
+            gridTemplateColumns: '2fr 1fr 1fr',
+            gap: '4rem', 
+            paddingBottom: '4rem'
+          }}
+        >
+          {/* Brand Info */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.125rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
               <div style={{
-                width: 32, height: 32, borderRadius: '8px',
+                width: 36, height: 36, borderRadius: '10px',
                 background: 'var(--color-brand)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <Sparkles size={17} color="white" />
+                <Sparkles size={20} color="white" strokeWidth={2.5} />
               </div>
-              <span style={{
-                fontFamily: 'var(--font-sans)', fontSize: '1.0625rem',
-                fontWeight: 800, letterSpacing: '-0.025em', color: '#fff',
-              }}>
-                LetsCrack <span style={{ color: '#93c5fd' }}>IELTS</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>
+                LetsCrack <span style={{ color: 'var(--color-brand-mid)' }}>IELTS</span>
               </span>
             </div>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1.5rem', maxWidth: '240px', color: 'rgba(255,255,255,0.6)' }}>
-              The most accurate IELTS practice platform. Helping aspirants
-              achieve Band 8+ with confidence.
+            <p style={{ fontSize: '1rem', lineHeight: 1.6, marginBottom: '2rem', maxWidth: '300px' }}>
+              The most accurate IELTS practice platform. Helping aspirants achieve Band 8+ with examiner-grade AI feedback.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-              {[
-                { icon: Mail, text: 'hello@letscrackielts.com' },
-                { icon: Globe, text: 'letscrackielts.com' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>
-                  <Icon size={14} />
-                  {text}
-                </div>
-              ))}
+            <div style={{ display: 'grid', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.9375rem' }}>
+                <Mail size={16} /> hello@letscrackielts.com
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.9375rem' }}>
+                <Globe size={16} /> letscrackielts.com
+              </div>
             </div>
           </div>
 
@@ -116,18 +114,21 @@ const Footer = () => {
           {cols.map(col => (
             <div key={col.heading}>
               <h4 style={{
-                fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.08em',
-                textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)',
-                marginBottom: '1.25rem',
+                fontSize: '0.75rem', 
+                fontWeight: 800, 
+                textTransform: 'uppercase', 
+                color: 'rgba(255,255,255,0.4)',
+                letterSpacing: '0.1em',
+                marginBottom: '1.5rem',
               }}>
                 {col.heading}
               </h4>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <ul style={{ listStyle: 'none', display: 'grid', gap: '0.875rem', padding: 0 }}>
                 {col.links.map(link => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 150ms' }}
+                      style={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 150ms ease' }}
                       onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#fff'; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.6)'; }}
                     >
@@ -140,24 +141,26 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom bar */}
+        {/* Legal Bottom Bar */}
         <div style={{
           borderTop: '1px solid rgba(255,255,255,0.1)',
-          padding: '1.5rem 0',
-          display: 'flex', justifyContent: 'space-between',
-          alignItems: 'center', flexWrap: 'wrap', gap: '1rem',
+          padding: '2rem 0',
+          display: 'flex', 
+          justifyContent: 'space-between',
+          alignItems: 'center', 
+          flexWrap: 'wrap', 
+          gap: '1.5rem'
         }}>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.4)', maxWidth: 'none' }}>
+          <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
             © {new Date().getFullYear()} LetsCrack IELTS. All rights reserved.
           </p>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {['IELTS Academic', 'IELTS General Training'].map(tag => (
-              <span key={tag} style={{
-                padding: '0.25rem 0.75rem', borderRadius: '999px',
-                fontSize: '0.75rem', fontWeight: 600,
-                background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)',
-              }}>{tag}</span>
-            ))}
+          <div style={{ display: 'flex', gap: '1rem' }}>
+             <div style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.35rem 1rem', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)' }}>
+               IELTS Academic
+             </div>
+             <div style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0.35rem 1rem', borderRadius: 'var(--radius-pill)', background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)' }}>
+               IELTS General
+             </div>
           </div>
         </div>
       </div>

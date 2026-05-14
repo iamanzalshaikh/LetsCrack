@@ -28,46 +28,48 @@ const Register: React.FC = () => {
             await register(formData);
             navigate('/login');
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Registration failed. Try again.');
+            const d = err.response?.data;
+            setError(d?.error || d?.message || 'Registration failed. Try again.');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-6 py-12 md:py-24 text-[#0f172a] relative">
-            {/* Subtle background glow for premium feel */}
-            <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-indigo-50/50 to-transparent -z-10" />
+        <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_56%)]" />
 
-            <div className="w-full max-w-[540px] z-10 animate-in fade-in zoom-in duration-500">
-                <div className="bg-white p-10 md:p-12 pb-12 md:pb-16 rounded-[32px] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-                    
-                    {/* Header Block (24px spacing) */}
-                    <div className="flex flex-col items-center mb-10 text-center">
-                        <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-600/20">
-                            <UserPlus className="w-7 h-7 text-white" />
+            <div className="relative w-full max-w-lg">
+                <div className="rounded-3xl border border-slate-200/80 bg-white p-7 shadow-[0_22px_60px_-30px_rgba(15,23,42,0.4)] md:p-9">
+                    <div className="mb-7 text-center">
+                        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+                            <UserPlus className="h-6 w-6" />
                         </div>
-                        <h1 className="text-[32px] font-extrabold tracking-tight text-slate-900 leading-tight">Create Account</h1>
-                        <p className="text-slate-500 mt-2 font-medium text-[15px]">Join LetsCrack and start your CELPIP prep</p>
+                        <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                            Create Account
+                        </h1>
+                        <p className="mt-2 text-sm text-slate-500">
+                            Join LetsCrack and start preparing today
+                        </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {error && (
-                            <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-xl text-sm font-semibold mb-6">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        {error ? (
+                            <div className="rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm font-medium text-red-700">
                                 {error}
                             </div>
-                        )}
+                        ) : null}
 
-                        {/* Name Grid (16px spacing) */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                             <div className="space-y-2">
-                                <label className="text-[12px] font-bold uppercase tracking-widest text-slate-500 ml-1">First Name</label>
-                                <div className="relative group">
-                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+                                <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">First Name</label>
+                                <div className="relative">
+                                    <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                                     <input
                                         name="firstName"
                                         required
-                                        className="w-full h-[52px] bg-white border border-slate-300 rounded-2xl pl-12 pr-4 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-medium text-slate-900 placeholder:text-slate-400 shadow-sm"
+                                        autoComplete="given-name"
+                                        className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 text-sm font-medium text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10"
                                         placeholder="John"
                                         value={formData.firstName}
                                         onChange={handleChange}
@@ -76,13 +78,14 @@ const Register: React.FC = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[12px] font-bold uppercase tracking-widest text-slate-500 ml-1">Last Name</label>
-                                <div className="relative group">
-                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+                                <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Last Name</label>
+                                <div className="relative">
+                                    <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                                     <input
                                         name="lastName"
                                         required
-                                        className="w-full h-[52px] bg-white border border-slate-300 rounded-2xl pl-12 pr-4 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-medium text-slate-900 placeholder:text-slate-400 shadow-sm"
+                                        autoComplete="family-name"
+                                        className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 text-sm font-medium text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10"
                                         placeholder="Doe"
                                         value={formData.lastName}
                                         onChange={handleChange}
@@ -91,67 +94,63 @@ const Register: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Email Address */}
                         <div className="space-y-2">
-                            <label className="text-[12px] font-bold uppercase tracking-widest text-slate-500 ml-1">Email Address</label>
-                            <div className="relative group">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+                            <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Email</label>
+                            <div className="relative">
+                                <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                                 <input
                                     name="email"
                                     type="email"
                                     required
-                                    className="w-full h-[52px] bg-white border border-slate-300 rounded-2xl pl-12 pr-4 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-medium text-slate-900 placeholder:text-slate-400 shadow-sm"
-                                    placeholder="john@example.com"
+                                    autoComplete="email"
+                                    className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 text-sm font-medium text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10"
+                                    placeholder="john@email.com"
                                     value={formData.email}
                                     onChange={handleChange}
                                 />
                             </div>
                         </div>
 
-                        {/* Password */}
                         <div className="space-y-2">
-                            <label className="text-[12px] font-bold uppercase tracking-widest text-slate-500 ml-1">Password</label>
-                            <div className="relative group">
-                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+                            <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Password</label>
+                            <div className="relative">
+                                <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                                 <input
                                     name="password"
                                     type="password"
                                     required
-                                    className="w-full h-[52px] bg-white border border-slate-300 rounded-2xl pl-12 pr-4 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-medium text-slate-900 placeholder:text-slate-400 shadow-sm"
-                                    placeholder="••••••••"
+                                    autoComplete="new-password"
+                                    className="h-12 w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 text-sm font-medium text-slate-900 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10"
+                                    placeholder="Create a password"
                                     value={formData.password}
                                     onChange={handleChange}
                                 />
                             </div>
                         </div>
 
-                        {/* CTA Block (24px/32px spacing) */}
-                        <div className="pt-2">
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full h-[56px] bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-300 text-white font-bold rounded-2xl shadow-xl shadow-indigo-600/10 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
-                            >
-                                {isLoading ? (
-                                    <>
-                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                        <span>Creating Account...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        Create Account
-                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                    </>
-                                )}
-                            </button>
-                        </div>
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="mt-2 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-900 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    <span>Creating account...</span>
+                                </>
+                            ) : (
+                                <>
+                                    Create Account
+                                    <ArrowRight className="h-4 w-4" />
+                                </>
+                            )}
+                        </button>
                     </form>
 
-                    {/* Footer Block */}
-                    <div className="mt-10 text-center border-t border-slate-100 pt-8">
-                        <p className="text-slate-500 text-[14px] font-medium">
+                    <div className="mt-6 border-t border-slate-100 pt-5 text-center">
+                        <p className="text-sm text-slate-500">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-indigo-600 hover:text-indigo-700 font-bold ml-1 transition-colors">
+                            <Link to="/login" className="font-semibold text-blue-600 transition hover:text-blue-700">
                                 Sign In
                             </Link>
                         </p>

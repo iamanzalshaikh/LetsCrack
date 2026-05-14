@@ -1,8 +1,4 @@
-/* 
- * LETSCRACK IELTS — COMPARISON SECTION
- * Focus: Capability Matrix, Transparency, Premium Table Design
- * Style: Clean borders, highlighted brand column
- */
+import React from 'react';
 
 const COMPARISON_ROWS = [
   {
@@ -25,13 +21,13 @@ const COMPARISON_ROWS = [
   },
   {
     capability: 'Progress analytics',
-    letsCrack: 'Per-skill dashboard + trend lines',
+    letsCrack: 'Per-skill dashboard + trends',
     youtube: 'No tracking system',
     coaching: 'Basic periodic reports',
   },
   {
     capability: 'Learning flexibility',
-    letsCrack: '24/7 access from any device',
+    letsCrack: '24/7 access (any device)',
     youtube: 'Flexible but unstructured',
     coaching: 'Fixed class timings',
   },
@@ -43,16 +39,9 @@ export default function ComparisonSection() {
       <div className="container">
         
         {/* Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 4rem' }}>
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 5rem' }} className="animate-fade-up">
           <p className="eyebrow" style={{ justifyContent: 'center' }}>How We're Different</p>
-          <h2 style={{ 
-            fontSize: 'clamp(2.25rem, 5vw, 3rem)', 
-            fontWeight: 800, 
-            color: 'var(--color-ink)', 
-            marginBottom: '1.25rem',
-            fontFamily: 'var(--font-display)',
-            letterSpacing: '-0.02em'
-          }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 5vw, 3rem)', marginBottom: '1.25rem' }}>
             LetsCrack vs YouTube vs<br />
             traditional coaching
           </h2>
@@ -61,25 +50,23 @@ export default function ComparisonSection() {
           </p>
         </div>
 
-        {/* Table Container */}
-        <div style={{
-          background: '#fff',
-          borderRadius: '24px',
-          border: '1px solid var(--color-border)',
-          overflow: 'hidden',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.02)',
-        }}>
+        {/* Table Wrapper */}
+        <div 
+          className="animate-fade-in"
+          style={{
+            background: 'white',
+            borderRadius: '28px',
+            border: '1px solid var(--color-border)',
+            overflow: 'hidden',
+            boxShadow: 'var(--shadow-lg)',
+          }}
+        >
           <div style={{ overflowX: 'auto' }}>
-            <table style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              textAlign: 'left',
-              minWidth: '800px',
-            }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '800px' }}>
               <thead>
-                <tr style={{ background: '#f8fafc' }}>
+                <tr style={{ background: 'var(--color-surface-2)' }}>
                   <th style={HEADER_STYLE}>Capability</th>
-                  <th style={{ ...HEADER_STYLE, color: 'var(--color-brand)', background: 'var(--color-brand-lt)', borderLeft: '1px solid #dbeafe', borderRight: '1px solid #dbeafe' }}>
+                  <th style={{ ...HEADER_STYLE, color: 'var(--color-brand)', background: 'var(--color-brand-lt)' }}>
                     LetsCrack
                   </th>
                   <th style={HEADER_STYLE}>YouTube</th>
@@ -88,15 +75,15 @@ export default function ComparisonSection() {
               </thead>
               <tbody>
                 {COMPARISON_ROWS.map((row, idx) => (
-                  <tr key={row.capability} style={{ borderTop: '1px solid var(--color-border)' }}>
+                  <tr key={idx} style={{ borderTop: '1px solid var(--color-border)' }}>
                     <td style={{ ...CELL_STYLE, fontWeight: 700, color: 'var(--color-ink)' }}>{row.capability}</td>
                     <td style={{ 
                       ...CELL_STYLE, 
                       fontWeight: 600, 
                       color: 'var(--color-brand)', 
                       background: 'var(--color-brand-lt)',
-                      borderLeft: '1px solid #dbeafe',
-                      borderRight: '1px solid #dbeafe'
+                      borderLeft: '1px solid rgba(26,86,219,0.1)',
+                      borderRight: '1px solid rgba(26,86,219,0.1)'
                     }}>
                       {row.letsCrack}
                     </td>
@@ -115,19 +102,18 @@ export default function ComparisonSection() {
 }
 
 const HEADER_STYLE: React.CSSProperties = {
-  padding: '1.5rem 2rem',
+  padding: '1.75rem 2rem',
   fontSize: '0.8125rem',
   fontWeight: 800,
   textTransform: 'uppercase',
-  letterSpacing: '0.05em',
-  color: 'var(--color-ink-4)',
-  fontFamily: 'var(--font-display)',
+  letterSpacing: '0.1em',
+  color: 'var(--color-ink-3)',
 };
 
 const CELL_STYLE: React.CSSProperties = {
-  padding: '1.5rem 2rem',
+  padding: '1.75rem 2rem',
   fontSize: '0.9375rem',
   lineHeight: 1.5,
   color: 'var(--color-ink-2)',
-  verticalAlign: 'top',
+  verticalAlign: 'middle',
 };
